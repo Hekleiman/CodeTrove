@@ -54,6 +54,7 @@ async function startServer() {
 
     // AI alternatives route
     app.post('/api/alternatives', async (req, res) => {
+      console.log('AI alternatives request reveived', req.body)
       const { code, language } = req.body || {}
       const apiKey = process.env.OPENAI_API_KEY
       if (!apiKey) {
