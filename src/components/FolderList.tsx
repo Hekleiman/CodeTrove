@@ -9,7 +9,7 @@ import {
   deleteFolderAsync,
   selectAllFolders,
 } from '../features/folders/folderSlice'
-import type { RootState, AppDispatch } from '../app/store'
+import type { AppDispatch } from '../app/store'
 
 interface FolderListProps {
   minimized: boolean

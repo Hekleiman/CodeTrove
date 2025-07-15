@@ -36,6 +36,13 @@ const SnippetCard: React.FC<{ snippet: Snippet }> = ({ snippet }) => {
   const [editLang, setEditLang] = useState(snippet.language);
   const [editCode, setEditCode] = useState(snippet.code);
 
+  // AI analysis state
+  const [analysis, setAnalysis] = useState<
+    | { rating: number; alternatives: { rank: number; code: string }[] }
+    | null
+  >(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+
   /** ───── Folder Handlers ───── */
   const openFolderModal  = () => setIsFolderModalOpen(true);
   const closeFolderModal = () => {
@@ -85,6 +92,26 @@ const SnippetCard: React.FC<{ snippet: Snippet }> = ({ snippet }) => {
     );
     setIsEditing(false);
   };
+
+  /** ───── AI Handlers ───── */
+  const fetchAlternatives = async () => {
+    setIsAnalyzing(true);
+    try {
+      const res = await fetch('/api/alternatives', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: snippet.code, language: snippet.language }),
+      });
+      if (res.ok) {
+        setAnalysis(await res.json());
+      }
+    } catch (err) {
+      console.error('AI analysis failed', err);
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+  const closeAnalysis = () => setAnalysis(null);
 
   /** ───── Render ───── */
   if (isEditing) {
@@ -154,6 +181,13 @@ const SnippetCard: React.FC<{ snippet: Snippet }> = ({ snippet }) => {
             🗑
           </button>
           <button
+            onClick={fetchAlternatives}
+            aria-label="AI alternatives"
+            className="text-white hover:text-purple-300 focus:outline-none"
+          >
+            ✨
+          </button>
+          <button
             onClick={openFolderModal}
             aria-label="Add to folder"
             className="text-white text-2xl hover:text-green-300 focus:outline-none"
@@ -207,6 +241,35 @@ const SnippetCard: React.FC<{ snippet: Snippet }> = ({ snippet }) => {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* AI analysis modal */}
+      {analysis && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white rounded-lg p-6 w-[90%] max-w-2xl overflow-y-auto">
+            <h4 className="mb-4 text-gray-800 font-medium">AI Alternatives</h4>
+            <p className="mb-4 text-sm text-gray-700">Original efficiency rating: {analysis.rating}/10</p>
+            <div className="space-y-4">
+              {analysis.alternatives.map(alt => (
+                <pre
+                  key={alt.rank}
+                  className="bg-gray-800 text-white text-sm rounded p-2 whitespace-pre-wrap"
+                >
+                  {`#${alt.rank}: ${alt.code}`}
+                </pre>
+              ))}
+            </div>
+            <div className="flex justify-end mt-4">
+              <button onClick={closeAnalysis} className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Close</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isAnalyzing && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 z-40">
+          <div className="bg-white rounded-lg p-4">Analyzing…</div>
         </div>
       )}
     </article>

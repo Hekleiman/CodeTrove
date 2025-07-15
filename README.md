@@ -1,3 +1,9 @@
+# CodeTrove
+
+CodeTrove is a small React + Express application for storing code snippets. It now integrates with OpenAI to suggest and rank alternative implementations of any snippet.
+
+Set `OPENAI_API_KEY` in `server/.env` to enable AI suggestions.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
