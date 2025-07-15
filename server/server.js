@@ -4,6 +4,7 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const { MongoClient, ObjectId } = require('mongodb')
+const OPENAI_URL = 'https://api.openai.com/v1/chat/completions'
 
 const app = express()
 app.use(cors())
@@ -49,6 +50,51 @@ async function startServer() {
       const { id } = req.params
       await snippets.deleteOne({ _id: new ObjectId(id) })
       res.sendStatus(204)
+    })
+
+    // AI alternatives route
+    app.post('/api/alternatives', async (req, res) => {
+      const { code, language } = req.body || {}
+      const apiKey = process.env.OPENAI_API_KEY
+      if (!apiKey) {
+        return res.status(500).json({ error: 'OPENAI_API_KEY not set' })
+      }
+
+      const prompt =
+        `You are a seasoned developer. Given the following code snippet in ${language || 'the provided language'}, provide three alternative implementations ordered from most efficient to least. ` +
+        `Also rate the original snippet's efficiency from 1 to 10. ` +
+        `Respond strictly in JSON with the shape {"rating":number,"alternatives":[{"rank":1,"code":"..."},...]}`
+
+      try {
+        const aiRes = await fetch(OPENAI_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${apiKey}`,
+          },
+          body: JSON.stringify({
+            model: 'gpt-3.5-turbo',
+            temperature: 0.2,
+            messages: [
+              { role: 'system', content: 'You generate code alternatives.' },
+              { role: 'user', content: prompt },
+              { role: 'user', content: code },
+            ],
+          }),
+        })
+        const data = await aiRes.json()
+        const text = data.choices?.[0]?.message?.content
+        let parsed
+        try {
+          parsed = JSON.parse(text)
+        } catch (err) {
+          return res.status(500).json({ error: 'AI response parse failed', raw: text })
+        }
+        res.json(parsed)
+      } catch (err) {
+        console.error('AI request failed:', err)
+        res.status(500).json({ error: 'AI request failed' })
+      }
     })
 
 const folders = db.collection('folders')

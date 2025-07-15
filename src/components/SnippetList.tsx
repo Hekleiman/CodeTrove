@@ -15,13 +15,11 @@ import { selectFilteredSnippets } from '../features/snippets/snippetSelectors'
 
 interface SnippetListProps {
   onEdit: (snippet: Snippet) => void
-  filterIds?: string[]
   searchTerm?: string
 }
 
 const SnippetList: React.FC<SnippetListProps> = ({
   onEdit,
-  filterIds,
   searchTerm = '',
 }) => {
   const dispatch = useDispatch<AppDispatch>()
