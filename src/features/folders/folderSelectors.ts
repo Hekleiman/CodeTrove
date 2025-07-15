@@ -28,7 +28,7 @@ export const selectSnippetIdsForCurrentFolder = createSelector(
 
     // If we seeded with `snippets` or are using `snippetIds`, support both
     const idsFromState = folder?.snippetIds
-    const idsFromDB    = (folder as any)?.snippets
+    const idsFromDB = (folder as { snippets?: unknown[] } | undefined)?.snippets
 
     return Array.isArray(idsFromState)
       ? idsFromState
