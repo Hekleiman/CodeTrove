@@ -55,7 +55,7 @@ const FolderList: React.FC<FolderListProps> = ({
   if (minimized) {
     return (
       <div
-        className="fixed top-20 left-4 w-12 h-12 bg-blue-700 rounded-r-md shadow-lg flex items-center justify-center cursor-pointer z-50"
+        className="fixed top-20 left-4 w-12 h-12 bg-wood-dark rounded-r-md shadow-lg flex items-center justify-center cursor-pointer z-50"
         onClick={toggle}
         title="Show Folders"
       >
@@ -65,12 +65,12 @@ const FolderList: React.FC<FolderListProps> = ({
   }
 
   return (
-    <aside className="fixed top-20 left-0 w-64 h-[calc(100vh-5rem)] bg-blue-800 p-4 overflow-y-auto shadow-lg z-40">
+    <aside className="fixed top-20 left-0 w-64 h-[calc(100vh-5rem)] bg-wood-dark/90 p-4 overflow-y-auto shadow-lg z-40">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold text-white">Folders</h2>
+        <h2 className="text-lg font-semibold pirate-font text-yellow-200">Folders</h2>
         <button
           onClick={toggle}
-          className="text-white text-sm px-2 py-1 border border-blue-600 rounded hover:bg-blue-700"
+          className="text-yellow-200 text-sm px-2 py-1 border border-wood-light rounded hover:bg-wood-light/30"
         >
           −
         </button>
@@ -84,8 +84,8 @@ const FolderList: React.FC<FolderListProps> = ({
               className={
                 'flex-1 flex items-center p-2 rounded ' +
                 (f.id === selectedId || f._id === selectedId
-                  ? 'bg-blue-600 font-medium text-white'
-                  : 'hover:bg-blue-700 text-blue-100')
+                  ? 'bg-wood-dark text-yellow-100'
+                  : 'hover:bg-wood-dark/50 text-yellow-100')
               }
             >
               <img src="/chest-icon.png" alt="Folder" className="mr-2 w-6 h-6" />
@@ -114,11 +114,11 @@ const FolderList: React.FC<FolderListProps> = ({
           value={newName}
           onChange={(e) => setNewName(e.target.value)}
           placeholder="New Folder"
-          className="flex-1 bg-blue-700 text-white placeholder-blue-300 border border-blue-600 rounded-l p-1"
+          className="flex-1 bg-wood-light text-wood-dark placeholder-wood-dark/70 border border-wood-dark rounded-l p-1"
         />
         <button
           onClick={handleCreate}
-          className="px-3 bg-[#8B5E3C] text-yellow-300 rounded-r hover:bg-[#705135]"
+          className="px-3 bg-wood text-yellow-300 rounded-r hover:bg-wood-dark"
         >
           +
         </button>

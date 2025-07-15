@@ -24,15 +24,15 @@ const TopStories: React.FC = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-bold mb-2">Top News Stories</h2>
+      <h2 className="text-xl font-bold mb-2 pirate-font">Top News Stories</h2>
       <ul className="space-y-4">
         {stories.map((story) => (
-          <li key={story.objectID} className="border-l-4 border-blue-500 pl-3">
+          <li key={story.objectID} className="border-l-4 border-wood-light pl-3">
             <a
               href={story.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-700 font-semibold hover:underline"
+              className="text-yellow-200 font-semibold hover:underline"
             >
               {story.title}
             </a>

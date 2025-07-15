@@ -116,8 +116,8 @@ const SnippetCard: React.FC<{ snippet: Snippet }> = ({ snippet }) => {
   /** ───── Render ───── */
   if (isEditing) {
     return (
-      <article className="mb-6 border border-blue-800 rounded-lg p-4 bg-blue-900 bg-opacity-30">
-        <h3 className="text-white font-semibold mb-2">Editing Snippet</h3>
+      <article className="mb-6 border border-wood-dark rounded-lg p-4 bg-wood-dark/60">
+        <h3 className="text-yellow-100 font-semibold mb-2 pirate-font">Editing Snippet</h3>
         <input
           className="w-full mb-2 p-1 rounded"
           value={editTitle}
@@ -148,7 +148,7 @@ const SnippetCard: React.FC<{ snippet: Snippet }> = ({ snippet }) => {
           </button>
           <button
             onClick={saveEdit}
-            className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"
+            className="px-3 py-1 bg-wood text-yellow-300 rounded hover:bg-wood-dark"
           >
             Save
           </button>
@@ -158,11 +158,11 @@ const SnippetCard: React.FC<{ snippet: Snippet }> = ({ snippet }) => {
   }
 
   return (
-    <article className="relative mb-6 border border-blue-800 rounded-lg p-4 bg-blue-900 bg-opacity-30">
+    <article className="relative mb-6 border border-wood-dark rounded-lg p-4 bg-wood-dark/60">
       {/* Header: title + buttons */}
       <header className="flex items-center justify-between mb-2">
         <div>
-          <h3 className="text-white text-lg font-semibold">{snippet.title}</h3>
+          <h3 className="text-yellow-200 text-lg font-semibold pirate-font">{snippet.title}</h3>
           <p className="text-gray-200 text-sm italic">{snippet.description}</p>
         </div>
         <div className="flex space-x-2">
@@ -198,7 +198,7 @@ const SnippetCard: React.FC<{ snippet: Snippet }> = ({ snippet }) => {
       </header>
 
       {/* Language badge */}
-      <span className="inline-block bg-blue-800 text-white text-xs px-2 py-1 rounded-full mb-2">
+      <span className="inline-block bg-wood text-yellow-200 text-xs px-2 py-1 rounded-full mb-2">
         {snippet.language}
       </span>
 
@@ -235,7 +235,7 @@ const SnippetCard: React.FC<{ snippet: Snippet }> = ({ snippet }) => {
               </button>
               <button
                 onClick={confirmAddToFolder}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                className="px-4 py-2 bg-wood text-yellow-300 rounded hover:bg-wood-dark"
               >
                 Add
               </button>
@@ -261,7 +261,7 @@ const SnippetCard: React.FC<{ snippet: Snippet }> = ({ snippet }) => {
               ))}
             </div>
             <div className="flex justify-end mt-4">
-              <button onClick={closeAnalysis} className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Close</button>
+              <button onClick={closeAnalysis} className="px-4 py-2 bg-wood text-yellow-300 rounded hover:bg-wood-dark">Close</button>
             </div>
           </div>
         </div>
