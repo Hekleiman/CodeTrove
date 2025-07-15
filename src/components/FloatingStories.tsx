@@ -26,7 +26,7 @@ const FloatingStories: React.FC<FloatingStoriesProps> = ({ minimized, toggle }) 
         className="
           fixed top-20 right-4
           w-4 h-16
-          bg-blue-700
+          bg-wood-dark
           rounded-l-md
           shadow-lg
           z-50
@@ -44,17 +44,17 @@ const FloatingStories: React.FC<FloatingStoriesProps> = ({ minimized, toggle }) 
         fixed top-20 right-4
         w-64 max-h-[70vh]
         overflow-y-auto
-        bg-blue-700 bg-opacity-90    /* semi-opaque blue */
-        border border-blue-500
+        bg-wood-dark/90    /* semi-opaque */
+        border border-wood-light
         p-4 rounded-lg shadow-lg
         z-50 text-white
       "
     >
       <div className="flex justify-between items-center mb-2">
-        <h3 className="text-lg font-semibold">Top Stories</h3>
+        <h3 className="text-lg font-semibold pirate-font">Top Stories</h3>
         <button
           onClick={toggle}
-          className="text-sm px-2 py-1 border border-blue-500 rounded hover:bg-blue-600"
+          className="text-sm px-2 py-1 border border-wood-light rounded hover:bg-wood-light/30"
         >
           −
         </button>

@@ -32,7 +32,7 @@ function App() {
 
   // Container gets side padding and top padding to clear the fixed logo
   const containerClasses = [
-    'relative bg-blue-900 text-white min-h-screen pt-32 px-4 lg:px-6',
+    'relative bg-wood-dark/80 text-yellow-100 min-h-screen pt-32 px-4 lg:px-6',
     !storiesMin && 'lg:pr-72',
     !foldersMin && 'lg:pl-64',
   ]
@@ -76,13 +76,13 @@ function App() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search snippets…"
-            className="flex-1 px-4 py-2 rounded bg-blue-700 text-white placeholder-blue-300
-                       focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 px-4 py-2 rounded bg-wood-light text-wood-dark placeholder-wood-dark/70
+                       focus:outline-none focus:ring-2 focus:ring-wood"
           />
           <button
             onClick={() => setFormSnippet(null)}
-            className="flex items-center space-x-2 px-6 py-2 bg-[#8B5E3C] text-yellow-300
-                       rounded-lg font-medium hover:bg-[#705135]"
+            className="flex items-center space-x-2 px-6 py-2 bg-wood text-yellow-300
+                       rounded-lg font-medium hover:bg-wood-dark"
           >
             <span className="text-2xl leading-none">+</span>
             <span>New Snippet</span>

@@ -63,59 +63,59 @@ const SnippetForm: React.FC<SnippetFormProps> = ({ existing, onClose }) => {
       <form
         onSubmit={handleSubmit}
         className="
-          bg-blue-800 text-white p-6 rounded-2xl shadow-2xl
+          bg-wood-dark text-yellow-100 p-6 rounded-2xl shadow-2xl
           w-full max-w-lg space-y-6
         "
       >
-        <h2 className="text-2xl font-bold">
+        <h2 className="text-2xl font-bold pirate-font">
           {existing ? 'Edit Snippet' : 'New Snippet'}
         </h2>
 
         <label className="block">
-          <span className="text-sm font-medium text-blue-200">Title</span>
+          <span className="text-sm font-medium text-yellow-200">Title</span>
           <input
             value={title}
             onChange={e => setTitle(e.target.value)}
             className="
-              mt-1 block w-full bg-blue-700 border border-blue-600
-              rounded-lg p-2 text-white placeholder-blue-300
-              focus:outline-none focus:ring-2 focus:ring-blue-500
+              mt-1 block w-full bg-wood-light border border-wood-dark
+              rounded-lg p-2 text-wood-dark placeholder-wood-dark/70
+              focus:outline-none focus:ring-2 focus:ring-wood
             "
             required
           />
         </label>
 
         <label className="block">
-          <span className="text-sm font-medium text-blue-200">Description</span>
+          <span className="text-sm font-medium text-yellow-200">Description</span>
           <textarea
             value={description}
             onChange={e => setDescription(e.target.value)}
             className="
-              mt-1 block w-full bg-blue-700 border border-blue-600
-              rounded-lg p-2 text-white placeholder-blue-300
-              focus:outline-none focus:ring-2 focus:ring-blue-500
+              mt-1 block w-full bg-wood-light border border-wood-dark
+              rounded-lg p-2 text-wood-dark placeholder-wood-dark/70
+              focus:outline-none focus:ring-2 focus:ring-wood
             "
             rows={3}
           />
         </label>
 
         <label className="block">
-          <span className="text-sm font-medium text-blue-200">Language</span>
+          <span className="text-sm font-medium text-yellow-200">Language</span>
           <input
             value={language}
             onChange={e => setLanguage(e.target.value)}
             className="
-              mt-1 block w-full bg-blue-700 border border-blue-600
-              rounded-lg p-2 text-white placeholder-blue-300
-              focus:outline-none focus:ring-2 focus:ring-blue-500
+              mt-1 block w-full bg-wood-light border border-wood-dark
+              rounded-lg p-2 text-wood-dark placeholder-wood-dark/70
+              focus:outline-none focus:ring-2 focus:ring-wood
             "
             required
           />
         </label>
 
         <label className="block">
-          <span className="text-sm font-medium text-blue-200">Code</span>
-          <div className="mt-1 bg-blue-700 border border-blue-600 rounded-lg overflow-hidden">
+          <span className="text-sm font-medium text-yellow-200">Code</span>
+          <div className="mt-1 bg-wood-light border border-wood-dark rounded-lg overflow-hidden">
             <CodeEditor value={code} onChange={setCode} />
           </div>
         </label>
@@ -125,8 +125,8 @@ const SnippetForm: React.FC<SnippetFormProps> = ({ existing, onClose }) => {
             type="button"
             onClick={onClose}
             className="
-              px-4 py-2 bg-blue-700 border border-blue-600
-              text-white rounded-lg hover:bg-blue-600
+              px-4 py-2 bg-wood-light border border-wood-dark
+              text-wood-dark rounded-lg hover:bg-wood-light/80
             "
           >
             Cancel
@@ -134,8 +134,8 @@ const SnippetForm: React.FC<SnippetFormProps> = ({ existing, onClose }) => {
           <button
             type="submit"
             className="
-              px-4 py-2 bg-[#8B5E3C] text-yellow-300
-              rounded-lg hover:bg-[#705135]
+              px-4 py-2 bg-wood text-yellow-300
+              rounded-lg hover:bg-wood-dark
             "
           >
             {existing ? 'Save' : 'Add'}
