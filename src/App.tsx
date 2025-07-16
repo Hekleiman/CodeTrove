@@ -1,6 +1,6 @@
 // src/App.tsx
 
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import type { RootState, AppDispatch } from './app/store'
 import type { Snippet } from './features/snippets/snippetSlice'
@@ -13,7 +13,6 @@ import SnippetForm     from './components/SnippetForm'
 import { fetchFolders }                     from './features/folders/folderSlice'
 import { fetchSnippets }                    from './features/snippets/snippetSlice'
 import { selectFolder }                     from './features/ui/uiSlice'
-import { selectSnippetIdsForCurrentFolder } from './features/folders/folderSelectors'
 
 function App() {
   const dispatch = useDispatch<AppDispatch>()
@@ -28,7 +27,6 @@ function App() {
   }, [dispatch])
 
   const selectedFolder = useSelector((s: RootState) => s.ui.selectedFolder)
-  const snippetIds     = useSelector(selectSnippetIdsForCurrentFolder)
 
   // Container gets side padding and top padding to clear the fixed logo
   const containerClasses = [
@@ -93,18 +91,14 @@ function App() {
       {/* Snippet form modal */}
       {formSnippet !== undefined && (
         <SnippetForm
-          existing={formSnippet}
+          existing={formSnippet || undefined}
           onClose={() => setFormSnippet(undefined)}
         />
       )}
 
       {/* Main content */}
       <main className="p-6">
-        <SnippetList
-          onEdit={setFormSnippet}
-          filterIds={snippetIds}
-          searchTerm={searchTerm}
-        />
+        <SnippetList searchTerm={searchTerm} />
       </main>
     </div>
   )
